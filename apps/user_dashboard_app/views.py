@@ -20,7 +20,7 @@ def login_user(request):
             for error in check_user[1]:
                 messages.warning(request, error)
                 return redirect('/')
-    return redirect('/book')
+    return redirect('/books')
 def register_user(request):
     if request.POST:
         validate_user_fields = User.objects.validate_user_fields(request.POST)
@@ -40,7 +40,7 @@ def register_user(request):
                 messages.warning(request, error[1])
 
             return redirect('/')
-    return redirect('/book')
+    return redirect('/books')
 def user_dashboard(request):
     users = User.objects.all()
     context = {
