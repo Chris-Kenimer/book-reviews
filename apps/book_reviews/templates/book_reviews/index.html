@@ -13,7 +13,7 @@
     <div class="well">
       <h5><a href="{% url 'book' id=review.book.id %}"> {{ review.book.title }} </a></h5>
       <span>Rating: {{ review.rating }}</span>
-      <p><a href="{% url 'user_reviews' id=review.reviewer.id %}">{{ review.reviewer.first_name }}</a> says: " This is some review notes"</p>
+      <p><a href="{% url 'user_reviews' id=review.reviewer.id %}">{{ review.reviewer.first_name }}</a> says: {{ review.review }}"</p>
       <p> Posted on {{ review.created_at }}</p>
 
     </div>

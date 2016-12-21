@@ -5,11 +5,14 @@
 
 <div class="well">
   <h2>{{ book.title }}</h2>
-  <h5>Author: {{ book.author }}</h5>
+  <h5>Author: {{ book.author.name }}</h5>
 </div>
+
 <div class="row">
   <div class="col-md-8">
+
     <h3>Reviews</h3>
+
     <hr>
     {% for review in reviews %}
       <p>Rating: {{ review.rating }}</p>
@@ -23,6 +26,9 @@
     {% endfor %}
   </div>
   <div class="col-md-4">
+    <div class="row">
+      <a href="/books/add" class="btn btn-primary">Add a another book and review</a>
+    </div>
     <div class="row">
       {% if messages %}
       {% for message in messages %}

@@ -10,6 +10,9 @@
   <p>Total Reviews: {{ book_reviews|length }}</p>
 </div>
 <div class="row">
+  <a href="/books/add" class="btn btn-primary">Add a another book and review</a>
+</div>
+<div class="row">
   <h3>Posted Reviews on the following books: </h3>
   <ul>
     {% for review in book_reviews %}

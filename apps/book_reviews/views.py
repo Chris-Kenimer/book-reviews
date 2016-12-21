@@ -6,7 +6,7 @@ from ..user_dashboard_app.models import User
 
 # Create your views here.
 def index(request):
-    reviews = Review.objects.all()
+    reviews = Review.objects.all().order_by('-id')[:3]
     books = Book.objects.all()
 
     context = {
@@ -28,7 +28,7 @@ def create_book(request):
         if book[0]:
             new_book_id = book[2].id
             messages.success(request, 'New Review Created')
-            return redirect('/books/')
+            return redirect('/books')
         else:
             for error in book[1]:
                 messages.warning(request, error)
@@ -43,7 +43,7 @@ def purge_books(request):
     return redirect('/dashboard')
 def book(request, id):
     book = Book.objects.get(id=id)
-    reviews = Review.objects.filter(book=id)
+    reviews = Review.objects.filter(book=id).order_by('-id')[:5]  
     context = {
         'book': book,
         'reviews': reviews
