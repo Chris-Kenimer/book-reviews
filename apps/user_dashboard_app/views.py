@@ -19,6 +19,7 @@ def login_user(request):
         else:
             for error in check_user[1]:
                 messages.warning(request, error)
+                 
                 return redirect('/')
     return redirect('/books')
 def register_user(request):
