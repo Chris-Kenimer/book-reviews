@@ -33,7 +33,7 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            {% if request.session %}
+            {% if request.session.user %}
               <li><a href="#">Hello, {{ request.session.user.name }}</a></li>
               <li><a href="#">Logout</a></li>
             {% else %}

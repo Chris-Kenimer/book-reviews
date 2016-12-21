@@ -49,7 +49,11 @@
           <option value="5">5</option>
         </select>
       </div>
+      {% if request.session.user %}
       <button type="submit" name="button">Submit Review</button>
+      {% else %}
+      <a href="{% url 'login' %}">Please login to submit a review </a>
+      {% endif %}
     </form>
 
   </div>
