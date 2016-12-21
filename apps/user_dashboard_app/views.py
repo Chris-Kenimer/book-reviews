@@ -19,7 +19,7 @@ def login_user(request):
         else:
             for error in check_user[1]:
                 messages.warning(request, error)
-                 
+
                 return redirect('/')
     return redirect('/books')
 def register_user(request):
@@ -93,7 +93,9 @@ def update_user(request):
 
             return redirect('/register')
     return redirect('/dashboard')
-
+def logout(request):
+    logout = request.session.pop('user')
+    return redirect('/')
 def purge_users(request):
     User.objects.delete_all()
     return redirect('/dashboard')

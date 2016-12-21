@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^edit_user/(?P<id>\d+$)', views.edit_user, name='edit_user'),
     url(r'^update_user', views.update_user, name='update_user'),
     url(r'^delete_all_users$', views.purge_users),
+    url(r'^logout$', views.logout, name='logout'),
 ]
