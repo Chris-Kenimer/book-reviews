@@ -1,0 +1,24 @@
+{% extends 'user_dashboard_app/base.html'%}
+
+{% block title %} Signin Page {% endblock %}
+{% block body %}
+
+<div class="well">
+  <p>User Alias: {{ user.first_name }}</p>
+  <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Total Reviews: {{ book_reviews|length }}</p>
+</div>
+<div class="row">
+  <h3>Posted Reviews on the following books: </h3>
+  <ul>
+    {% for review in book_reviews %}
+    <li><a href="{% url 'book' id=review.book.id %}">{{ review.book.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+
+
+{% endblock %}

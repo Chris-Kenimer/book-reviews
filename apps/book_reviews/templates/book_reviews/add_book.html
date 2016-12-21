@@ -1,0 +1,58 @@
+{% extends 'user_dashboard_app/base.html' %}
+{% block title%} Home Page {% endblock %}
+{% block body %}
+<div class="row">
+  {% if messages %}
+  {% for message in messages %}
+    <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+      <a class="close" data-dismiss="alert" href="#">&times;</a>
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+</div>
+<div class="row">
+  <h3>Add a New Book Title and a Review</h3>
+  <form class="" action="{% url 'create_book' %}" method="post">
+  {% csrf_token %}
+    <div class="form-group">
+      <label for="">Book Title</label>
+      <input type="text" name="book-title" class="form-control" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Author</label>
+      <div class="col-md-11 col-md-offset-1">
+        <div class="form-group">
+          Choose from the list:
+          <select class="form-control" name="author">
+            <option value="">Select an author</option>
+            {% for author in authors %}
+              <option value="{{ author.id }}">{{ author.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          Or add a new author: <input type="text" class="form-control"  name="other-author" value="">
+        </div>
+      </div>
+
+
+    </div>
+    <div class="form-group">
+      <label for="">Review</label>
+      <textarea name="review" class="form-control"  rows="4" cols="40"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="">Rating - 5 is the highest</label>
+      <select class="form-control" name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <button type="submit" name="button">Add Book and Review</button>
+  </form>
+</div>
+{% endblock %}

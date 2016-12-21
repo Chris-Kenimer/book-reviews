@@ -1,0 +1,61 @@
+{% extends 'user_dashboard_app/base.html'%}
+
+{% block title %} Signin Page {% endblock %}
+{% block body %}
+
+<div class="well">
+  <h2>{{ book.title }}</h2>
+  <h5>Author: {{ book.author }}</h5>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <h3>Reviews</h3>
+    <hr>
+    {% for review in reviews %}
+      <p>Rating: {{ review.rating }}</p>
+      <p><a href="{% url 'user_reviews' id=review.reviewer.id %}">{{ review.reviewer.first_name }}</a> says: {{ review.review }}</p>
+      <p>{{ review.created_at }}
+        {% if request.session.user.id == review.reviewer.id %}
+        <a href="{% url 'delete_review' id=review.id %}">Delete this review</a>
+        {% endif %}
+      </p>
+      <hr>
+    {% endfor %}
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      {% if messages %}
+      {% for message in messages %}
+        <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+          <a class="close" data-dismiss="alert" href="#">&times;</a>
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    </div>
+    <form class="" action="{% url 'submit_review' id=book.id %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="">Add a review</label>
+        <textarea name="review" class="form-control" rows="3" cols="20"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">Rating</label>
+        <select class="form-control" name="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <button type="submit" name="button">Submit Review</button>
+    </form>
+
+  </div>
+</div>
+
+
+
+
+{% endblock %}
